@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+<form action="#" th:action="@{/my/profile}" th:object="${user}" method="post">
+    <table border="1">
+
+        <tr>
+            <td><label th:text="firstName" /></td>
+            <td><input type="text" th:field="*{firstName}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="lastName" /></td>
+            <td><input type="text" th:field="*{lastName}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="email" /></td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="role" /></td>
+            <td><input type="text" th:field="*{role.roleName}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="userType" /></td>
+
+            <td><select th:field="*{userType}">
+                <option th:each="option : ${userType}"
+                        th:value="${option}"
+                        th:text="${option}"
+                        th:selected="*{userType}">
+                    Options
+                </option>
+            </select></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="webSite" /></td>
+            <td><input type="text" th:field="*{webSite}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="blog" /></td>
+            <td><input type="text" th:field="*{blog}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="researcherId" /></td>
+            <td><input type="text" th:field="*{researcherId}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="facebook" /></td>
+            <td><input type="text" th:field="*{facebook}" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
