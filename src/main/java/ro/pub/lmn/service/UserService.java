@@ -46,10 +46,10 @@ public class UserService {
 
     public void updateUser(UserDTO userDTO) {
 
-        User user = userRepository.findByEmail(userDTO.getEmail());
-       entityToDTOAndLanguageService.DTOToEntity(userDTO, user);
+        User user = userRepository.findOne(userDTO.getId());
+        entityToDTOAndLanguageService.DTOToEntity(userDTO, user);
         UserDetails userDetails = user.getUserDetails();
-
+        entityToDTOAndLanguageService.DTOToEntity(userDTO, userDetails);
         userRepository.save(user);
         userDetailsRepository.save(userDetails);
     }

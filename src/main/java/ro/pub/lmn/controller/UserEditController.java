@@ -1,21 +1,27 @@
 package ro.pub.lmn.controller;
 
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
+import javassist.bytecode.ByteArray;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.security.crypto.codec.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.Base64Utils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ro.pub.lmn.entity.dto.UserDTO;
 import ro.pub.lmn.enumm.PeopleEnum;
 import ro.pub.lmn.service.UserService;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.List;
+import java.sql.SQLException;
+import java.util.*;
 
 /**
  * Created by radug on 11/1/2017.
@@ -47,9 +53,19 @@ public class UserEditController {
     }
 
     @PostMapping("/profile")
-    public String editProfile(@ModelAttribute("user") UserDTO userDTO, Model model){
+    public String editProfile(@ModelAttribute("user") UserDTO userDTO, Model model, @RequestParam("imagee")MultipartFile image){
         model.addAttribute("userType", this.returnUserTypeList());
-        userService.updateUser(userDTO);
+        try {
+            userDTO.setImage(new SerialBlob(image.getBytes()));
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+//        try {
+//            Base64Utils.decodeUrlSafe(userDTO.getImage().getBytes(0, (int) userDTO.getImage().length()));
+//            userService.updateUser(userDTO);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return "editUser";
     }
 }

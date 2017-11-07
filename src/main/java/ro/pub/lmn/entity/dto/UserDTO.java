@@ -5,6 +5,8 @@ import ro.pub.lmn.entity.User;
 import ro.pub.lmn.entity.UserDetails;
 import ro.pub.lmn.enumm.PeopleEnum;
 
+import java.sql.Blob;
+
 /**
  * Created by radug on 11/1/2017.
  */
@@ -30,10 +32,12 @@ public class UserDTO {
 
     private String facebook;
 
+    private Blob image;
+
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String firstName, String lastName, String email, Role role, PeopleEnum userType, String webSite, String blog, String researcherId, String facebook) {
+    public UserDTO(Long id, String firstName, String lastName, String email, Role role, PeopleEnum userType, String webSite, String blog, String researcherId, String facebook, Blob image) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,6 +48,7 @@ public class UserDTO {
         this.blog = blog;
         this.researcherId = researcherId;
         this.facebook = facebook;
+        this.image = image;
     }
 
     public Long getId() {
@@ -126,6 +131,14 @@ public class UserDTO {
         this.facebook = facebook;
     }
 
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
+    }
+
     public UserDTO toUserDTO(User user){
         this.setId(user.getId());
         this.setFirstName(user.getFirstName());
@@ -139,6 +152,7 @@ public class UserDTO {
         this.setResearcherId(userDetails.getResearcherId());
         this.setUserType(userDetails.getUserType());
         this.setWebSite(userDetails.getWebSite());
+        this.setImage(userDetails.getImage());
         return this;
     }
 }

@@ -5,8 +5,13 @@
     <title>Edit user</title>
 </head>
 <body>
-<form action="#" th:action="@{/my/profile}" th:object="${user}" method="post">
+<form action="#" th:action="@{/my/profile}" th:object="${user}" method="post" enctype="multipart/form-data">
     <table border="1">
+        <tr><td>Profile Image:</td><td><input type="file" name="imagee" /></td></tr>
+        <tr>
+            <td><label th:text="id" /></td>
+            <td><input type="text" th:field="*{id}" readonly="readonly" /></td>
+        </tr>
 
         <tr>
             <td><label th:text="firstName" /></td>

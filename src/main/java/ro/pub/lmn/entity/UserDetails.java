@@ -3,6 +3,7 @@ package ro.pub.lmn.entity;
 import ro.pub.lmn.enumm.PeopleEnum;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 /**
  * Created by radug on 11/1/2017.
@@ -26,6 +27,8 @@ public class UserDetails {
     private String researcherId;
 
     private String facebook;
+
+    private Blob image;
 
     public UserDetails() {
     }
@@ -85,4 +88,13 @@ public class UserDetails {
     public void setFacebook(java.lang.String facebook) {
         this.facebook = facebook;
     }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
+    }
+
 }

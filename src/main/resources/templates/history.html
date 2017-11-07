@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+</head>
+<body>
+<table>
+    <th:block th:each="history : ${history}">
+        <tr>
+            <td th:text="${history.id}">...</td>
+            <td th:text="${history.title">...</td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${history.description}">...</td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${history.start}">...</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
+<body>
+
+</body>
+</html>

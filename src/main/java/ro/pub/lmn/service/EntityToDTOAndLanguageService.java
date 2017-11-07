@@ -1,6 +1,7 @@
 package ro.pub.lmn.service;
 
 import org.springframework.stereotype.Component;
+import ro.pub.lmn.annotations.IgnoreEntityToDTO;
 import ro.pub.lmn.annotations.Language;
 
 import javax.persistence.Id;
@@ -14,14 +15,14 @@ public class EntityToDTOAndLanguageService {
     public Object DTOToEntity(Object DTO, Object entity){
         for(Field field : entity.getClass().getDeclaredFields()){
             try {
-                if(DTO.getClass().getDeclaredField(field.getName()) != null && !field.isAnnotationPresent(Id.class)){
+                if(DTO.getClass().getDeclaredField(field.getName()) != null && !field.isAnnotationPresent(Id.class) && !field.isAnnotationPresent(IgnoreEntityToDTO.class)){
                     Field fieldDTO = DTO.getClass().getDeclaredField(field.getName());
                     field.setAccessible(true);
                     fieldDTO.setAccessible(true);
                     field.set(entity, fieldDTO.get(DTO));
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
+                System.out.println(field.getName() + " nu a fost gasit in DTO!");
             }
         }
         return entity;
@@ -38,9 +39,7 @@ public class EntityToDTOAndLanguageService {
                         field.set(entity, field.get(entity));
 
                 }
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }
 //            }

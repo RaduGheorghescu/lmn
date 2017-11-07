@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add History</title>
+</head>
+<body>
+<form action="#" th:action="@{/admin/history/add}" th:object="${history}" method="post">
+    <table border="1">
+        <tr>
+            <td><label th:text="Title (EN)" /></td>
+            <td><input type="text" th:field="*{title}"/></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="Description (EN)" /></td>
+            <td><input type="text" th:field="*{description}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="Title (RO)" /></td>
+            <td><input type="text" th:field="*{titleRO}"/></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="Description (RO)" /></td>
+            <td><input type="text" th:field="*{descriptionRO}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="start" /></td>
+            <td><input type="number" th:field="*{start}" /></td>
+        </tr>
+
+        <tr>
+            <td><label th:text="stop" /></td>
+            <td><input type="number" th:field="*{stop}" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

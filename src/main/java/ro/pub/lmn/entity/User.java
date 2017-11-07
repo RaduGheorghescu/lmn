@@ -1,10 +1,12 @@
 package ro.pub.lmn.entity;
 
+import javassist.bytecode.ByteArray;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ro.pub.lmn.annotations.IgnoreEntityToDTO;
 import ro.pub.lmn.annotations.Language;
 
 import javax.persistence.*;
@@ -18,6 +20,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class User {
+    @IgnoreEntityToDTO
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     @Id
@@ -26,6 +29,7 @@ public class User {
 
     @NotNull
     @Size(min = 4)
+    @IgnoreEntityToDTO
     private String password;
 
     @NotNull
@@ -41,6 +45,7 @@ public class User {
     private String email;
 
     @ManyToOne
+    @IgnoreEntityToDTO
     private Role role;
 
     @OneToOne
