@@ -11,6 +11,7 @@ import ro.pub.lmn.annotations.Language;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,6 +20,7 @@ import javax.validation.constraints.Size;
  */
 
 @Entity
+@Table(name = "app_user")
 public class User {
     @IgnoreEntityToDTO
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
