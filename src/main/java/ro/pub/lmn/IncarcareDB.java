@@ -36,7 +36,6 @@ public class IncarcareDB implements ApplicationRunner {
         if (user == null){
             user = new User("radu.gheorghescu@eestec.ro","radueadmin",
                     "Radu","Gheorghescu", roleService.findByRoleName("ROLE_ADMIN"));
-            user.setId((long) 1);
             userService.saveAsAdmin(user);
         }
     }
