@@ -1,14 +1,10 @@
 package ro.pub.lmn.controller;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
-import javassist.bytecode.ByteArray;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.query.Procedure;
-import org.springframework.security.crypto.codec.*;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ro.pub.lmn.entity.dto.UserDTO;
@@ -16,9 +12,7 @@ import ro.pub.lmn.enumm.PeopleEnum;
 import ro.pub.lmn.service.UserService;
 
 import javax.sql.rowset.serial.SerialBlob;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.*;

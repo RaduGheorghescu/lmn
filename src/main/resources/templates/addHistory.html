@@ -8,22 +8,22 @@
 <form action="#" th:action="@{/admin/history/add}" th:object="${history}" method="post">
     <table border="1">
         <tr>
-            <td><label th:text="Title (EN)" /></td>
+            <td><label th:text="TitleEn" /></td>
             <td><input type="text" th:field="*{title}"/></td>
         </tr>
 
         <tr>
-            <td><label th:text="Description (EN)" /></td>
+            <td><label th:text="DescriptionEn" /></td>
             <td><input type="text" th:field="*{description}" /></td>
         </tr>
 
         <tr>
-            <td><label th:text="Title (RO)" /></td>
+            <td><label th:text="TitleRo" /></td>
             <td><input type="text" th:field="*{titleRO}"/></td>
         </tr>
 
         <tr>
-            <td><label th:text="Description (RO)" /></td>
+            <td><label th:text="DescriptionRo" /></td>
             <td><input type="text" th:field="*{descriptionRO}" /></td>
         </tr>
 

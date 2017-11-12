@@ -6,6 +6,7 @@ import ro.pub.lmn.annotations.Language;
 
 import javax.persistence.Id;
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 /**
  * Created by radug on 11/2/2017.
@@ -27,23 +28,39 @@ public class EntityToDTOAndLanguageService {
         }
         return entity;
     }
-    public void setLanguageForDTO(Object entity, Class DTO){
-        for(Field field : entity.getClass().getDeclaredFields()){
-//            if(field.isAnnotationPresent(Language.class)){
-            try {
-                if(DTO.getDeclaredField(field.getName()) != null) {
-
-                        Field field1 = DTO.getDeclaredField(field.getName());
-                        field1.setAccessible(true);
-                        field.setAccessible(true);
-                        field.set(entity, field.get(entity));
-
-                }
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-//            }
+    public Object setLanguageForDTO(Object entity, Class DTO, String language){
+        Object DTOReturn = null;
+        try {
+            DTOReturn = DTO.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
         }
+        for(Field field : entity.getClass().getDeclaredFields()){
+            try {
+//                if(DTO.getDeclaredField(field.getName()) != null || field.isAnnotationPresent(Language.class)){
+                    Field dtoField = null;
+                    if(!field.isAnnotationPresent(Language.class)){
+                        dtoField =  DTO.getDeclaredField(field.getName());
+                    }else {
+                        dtoField = DTO.getDeclaredField(field.getAnnotation(Language.class).DTOField());
+                    }
+                    if(field.isAnnotationPresent(Language.class)){
+                        if(Objects.equals(field.getAnnotation(Language.class).language(), language)){
+                            field.setAccessible(true);
+                            dtoField.setAccessible(true);
+                            dtoField.set(DTOReturn, field.get(entity));
+                        }
+                    }else{
+                        field.setAccessible(true);
+                        dtoField.setAccessible(true);
+                        dtoField.set(DTOReturn, field.get(entity));
+                    }
+//                }
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                System.out.println(field.getName() + " nu a fost gasit in DTO!");
+            }
+        }
+        return DTOReturn;
     }
 
 
