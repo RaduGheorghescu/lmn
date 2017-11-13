@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:replace="fragments/head :: head">
+    <title th:text="#{nav.home}">Home</title>
 </head>
 <body>
-
+<div th:replace="fragments/navbar :: navbar">...</div>
+<div class="container">
+    <p>
+        Welcome to Numerical Methods Laboratory (Laboratorul de Metode Numerice). LMN is a higher education and research unit of POLITEHNICA University of Bucharest, Romania (PUB). Its mission is to promote, as excellence center, the professional use of computers in electrical engineering.
+    </p>
+    <p>
+        LMN was founded in 1983 by Daniel IOAN, as part of the Department of Theoretical Electrotechnics, of the School of Electrical Engineering from PUB, with a strong interdisciplinary character, open towards computers, mathematics, electromagnetic devices and systems, including electronics.
+    </p>
+</div>
+<div th:replace="fragments/footer :: footer">...</div>
 </body>
 </html>
