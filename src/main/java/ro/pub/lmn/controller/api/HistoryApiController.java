@@ -18,8 +18,7 @@ public class HistoryApiController {
     public HistoryApiController(HistoryService historyService) {
         this.historyService = historyService;
     }
-
-    @CrossOrigin
+    
     @GetMapping("")
     public List<HistoryDTO> getAllHistory(@RequestParam String lang){
         return historyService.findAll(lang);
