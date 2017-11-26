@@ -44,6 +44,8 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public User findById(Long id) {return userRepository.findOne(id);}
+
     public void updateUser(UserDTO userDTO) {
 
         User user = userRepository.findOne(userDTO.getId());
