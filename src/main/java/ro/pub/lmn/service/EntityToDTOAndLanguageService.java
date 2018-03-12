@@ -1,5 +1,6 @@
 package ro.pub.lmn.service;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 import ro.pub.lmn.annotations.IgnoreEntityToDTO;
 import ro.pub.lmn.annotations.Language;
@@ -28,7 +29,8 @@ public class EntityToDTOAndLanguageService {
         }
         return entity;
     }
-    public Object setLanguageForDTO(Object entity, Class DTO, String language){
+    public Object setLanguageForDTO(Object entity, Class DTO){
+        String language = LocaleContextHolder.getLocale().getLanguage();
         Object DTOReturn = null;
         try {
             DTOReturn = DTO.newInstance();
@@ -42,7 +44,11 @@ public class EntityToDTOAndLanguageService {
                     if(!field.isAnnotationPresent(Language.class)){
                         dtoField =  DTO.getDeclaredField(field.getName());
                     }else {
-                        dtoField = DTO.getDeclaredField(field.getAnnotation(Language.class).DTOField());
+                        String dtoFieldName = field.getAnnotation(Language.class).DTOField();
+                        if(dtoFieldName.equals(null)){
+                            dtoFieldName = field.getName();
+                        }
+                        dtoField = DTO.getDeclaredField(dtoFieldName);
                     }
                     if(field.isAnnotationPresent(Language.class)){
                         if(Objects.equals(field.getAnnotation(Language.class).language(), language)){

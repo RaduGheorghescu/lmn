@@ -1,6 +1,6 @@
 package ro.pub.lmn.entity;
 
-import ro.pub.lmn.enumm.PeopleEnum;
+import ro.pub.lmn.enumm.PeopleTypeEnum;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -18,7 +18,7 @@ public class UserDetails {
     @OneToOne
     private User user;
 
-    private PeopleEnum userType;
+    private PeopleTypeEnum userType;
 
     private String webSite;
 
@@ -49,11 +49,11 @@ public class UserDetails {
         return user;
     }
 
-    public PeopleEnum getUserType() {
+    public PeopleTypeEnum getUserType() {
         return userType;
     }
 
-    public void setUserType(PeopleEnum userType) {
+    public void setUserType(PeopleTypeEnum userType) {
         this.userType = userType;
     }
 

@@ -20,10 +20,8 @@ public class History {
 
     private int stop;
 
-    @Language(DTOField = "Title")
     private String Title;
 
-    @Language(DTOField = "Description")
     private String Description;
 
     @Language(language = "ro",DTOField = "Title")

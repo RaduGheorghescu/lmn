@@ -1,8 +1,10 @@
 package ro.pub.lmn.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ro.pub.lmn.controller.HistoryController;
+import ro.pub.lmn.entity.History;
 import ro.pub.lmn.entity.dto.HistoryDTO;
 import ro.pub.lmn.service.HistoryService;
 
@@ -20,7 +22,12 @@ public class HistoryApiController {
     }
     
     @GetMapping("")
-    public List<HistoryDTO> getAllHistory(@RequestParam String lang){
-        return historyService.findAll(lang);
+    public List<HistoryDTO> getAllHistory(){
+        return historyService.findAll();
+    }
+
+    @PostMapping("")
+    public History saveHistory(@RequestBody History history){
+        return historyService.save(history);
     }
 }

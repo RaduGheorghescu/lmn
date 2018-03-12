@@ -3,7 +3,7 @@ package ro.pub.lmn.entity.dto;
 import ro.pub.lmn.entity.Role;
 import ro.pub.lmn.entity.User;
 import ro.pub.lmn.entity.UserDetails;
-import ro.pub.lmn.enumm.PeopleEnum;
+import ro.pub.lmn.enumm.PeopleTypeEnum;
 
 import java.sql.Blob;
 
@@ -22,7 +22,7 @@ public class UserDTO {
 
     private Role role;
 
-    private PeopleEnum userType;
+    private PeopleTypeEnum userType;
 
     private String webSite;
 
@@ -37,7 +37,7 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String firstName, String lastName, String email, Role role, PeopleEnum userType, String webSite, String blog, String researcherId, String facebook, Blob image) {
+    public UserDTO(Long id, String firstName, String lastName, String email, Role role, PeopleTypeEnum userType, String webSite, String blog, String researcherId, String facebook, Blob image) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -91,11 +91,11 @@ public class UserDTO {
         this.role = role;
     }
 
-    public PeopleEnum getUserType() {
+    public PeopleTypeEnum getUserType() {
         return userType;
     }
 
-    public void setUserType(PeopleEnum userType) {
+    public void setUserType(PeopleTypeEnum userType) {
         this.userType = userType;
     }
 

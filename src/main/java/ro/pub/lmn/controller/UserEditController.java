@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ro.pub.lmn.entity.dto.UserDTO;
-import ro.pub.lmn.enumm.PeopleEnum;
+import ro.pub.lmn.enumm.PeopleTypeEnum;
 import ro.pub.lmn.service.UserService;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -33,7 +33,7 @@ public class UserEditController {
 
     private List<String> returnUserTypeList(){
         List<String> userType = new ArrayList<>();
-        EnumSet.allOf(PeopleEnum.class).forEach(people -> userType.add(people.toString()));
+        EnumSet.allOf(PeopleTypeEnum.class).forEach(people -> userType.add(people.toString()));
         return userType;
     }
 

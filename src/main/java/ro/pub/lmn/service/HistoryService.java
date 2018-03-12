@@ -26,15 +26,15 @@ public class HistoryService {
         this.entityToDTOAndLanguageService = entityToDTOAndLanguageService;
     }
 
-    public void save(History history){
-        historyRepository.save(history);
+    public History save(History history){
+        return historyRepository.save(history);
     }
 
-    public List<HistoryDTO> findAll(String language){
+    public List<HistoryDTO> findAll(){
         List<History> historyList = historyRepository.findAll();
         List<HistoryDTO> historyDTOList = new ArrayList<>();
         for(History history : historyList){
-            historyDTOList.add((HistoryDTO) entityToDTOAndLanguageService.setLanguageForDTO(history, HistoryDTO.class, language));
+            historyDTOList.add((HistoryDTO) entityToDTOAndLanguageService.setLanguageForDTO(history, HistoryDTO.class));
         }
         historyDTOList = historyDTOList.stream().sorted((h1, h2) -> h2.getStart() - h1.getStart()).collect(Collectors.toList());
         return historyDTOList;
