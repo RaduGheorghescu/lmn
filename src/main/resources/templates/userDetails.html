@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head :: head">
+    <title th:text="#{nav.userDetails}">User Details</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar">...</div>
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-4"><img
+                    src="http://www.district2s4lions.org/wp-content/uploads/2015/06/BlankProfilePicture.jpg"
+                    style="width:230px;height:250px;display:block;
+    margin:auto;"></div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Despre mine</div>
+                    <div class="panel-body">Latin was originally spoken in Latium, in the Italian Peninsula.[3] Through
+                        the power of the Roman Republic, it became the dominant language, initially in Italy and
+                        subsequently throughout the Roman Empire. Vulgar Latin developed into the Romance languages,
+                        such as Italian, Portuguese, Spanish, French, and Romanian. Latin and French have contributed
+                        many words to the English language. Latin and Ancient Greek roots are used in theology, biology,
+                        and medicine.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 5px">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <b>Name: </b>
+                        <div th:text="${user.firstName} + ' ' + ${user.lastName}" th:remove="tag"></div>
+                        <br>
+                        <b>Email: </b> <span th:text="${user.email}"></span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer">...</div>
+</body>
+</html>

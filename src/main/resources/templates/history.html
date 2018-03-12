@@ -10,7 +10,7 @@
         <p th:text="#{history.description}"></p>
         <ul>
             <th:block th:each="history : ${history}">
-                <li><b th:text="${history.start}"> </b> <b th:if="${history.stop != 0}" th:text="to + ' ' + ${history.stop}"> </b> - <b th:text="${history.title}"></b> - <i th:text="${history.description}"></i></li>
+                <li><b th:text="${history.start}"> </b> <b th:if="${history.stop != 0}" th:text="to + ' ' + ${history.stop}"> </b> - <b th:text="${history.title}"></b> - <i th:utext="${history.description}"></i></li>
             </th:block>
         </ul>
     </div>

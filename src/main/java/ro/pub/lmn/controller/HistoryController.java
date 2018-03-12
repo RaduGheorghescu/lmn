@@ -29,7 +29,7 @@ public class HistoryController {
         if(!language.equals(paramLang) && paramLang != null){
             language = paramLang;
         }
-        model.addAttribute("history",historyService.findAll(language));
+        model.addAttribute("history",historyService.findAll());
         return "history";
     }
 }

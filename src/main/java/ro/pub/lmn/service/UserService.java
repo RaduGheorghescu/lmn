@@ -19,12 +19,14 @@ public class UserService {
     private final RoleService roleService;
     private final UserDetailsRepository userDetailsRepository;
     private final EntityToDTOAndLanguageService entityToDTOAndLanguageService;
+    private final EmailService emailService;
     @Autowired
-    public UserService(UserRepository userRepository, RoleService roleService, UserDetailsRepository userDetailsRepository, EntityToDTOAndLanguageService entityToDTOAndLanguageService){
+    public UserService(UserRepository userRepository, RoleService roleService, UserDetailsRepository userDetailsRepository, EntityToDTOAndLanguageService entityToDTOAndLanguageService, EmailService emailService){
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.userDetailsRepository = userDetailsRepository;
         this.entityToDTOAndLanguageService = entityToDTOAndLanguageService;
+        this.emailService = emailService;
     }
 
     public List<User> findAll(){
@@ -32,17 +34,21 @@ public class UserService {
     }
 
     public void addUser(User user){
+        emailService.sendSimpleMessage(user.getEmail(), "LMN New Account", "New user account created for " + user.getEmail());
         user.setRole(roleService.findByRoleName("ROLE_USER"));
         userRepository.save(user);
     }
 
     public void saveAsAdmin(User user){
+        emailService.sendSimpleMessage(user.getEmail(), "LMN New Account [ADMIN]", "New user account created for " + user.getEmail());
         userRepository.save(user);
     }
 
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
+    public User findById(Long id) {return userRepository.findOne(id);}
 
     public void updateUser(UserDTO userDTO) {
 

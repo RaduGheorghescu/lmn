@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add History</title>
+<head th:replace="fragments/head :: head">
+    <title th:text="#{nav.history}">History</title>
 </head>
 <body>
-<form action="#" th:action="@{/admin/history/add}" th:object="${history}" method="post">
-    <table border="1">
-        <tr>
-            <td><label th:text="TitleEn" /></td>
-            <td><input type="text" th:field="*{title}"/></td>
-        </tr>
+<div th:replace="fragments/navbar :: navbar">...</div>
+<div class="container">
+    <div class="jumbotron">
+        <form action="#" th:action="@{/admin/history/add}" th:object="${history}" method="post">
+            <table class="table table-condensed">
+                <tr>
+                    <td><label th:text="TitleEn"/></td>
+                    <td><input type="text" th:field="*{title}"/></td>
+                </tr>
 
-        <tr>
-            <td><label th:text="DescriptionEn" /></td>
-            <td><input type="text" th:field="*{description}" /></td>
-        </tr>
+                <tr>
+                    <td><label th:text="DescriptionEn"/></td>
+                    <td><div id="descriptionEn"><input type="text" th:field="*{description}"/></div></td>
+                </tr>
 
-        <tr>
-            <td><label th:text="TitleRo" /></td>
-            <td><input type="text" th:field="*{titleRO}"/></td>
-        </tr>
+                <tr>
+                    <td><label th:text="TitleRo"/></td>
+                    <td><input type="text" th:field="*{titleRO}"/></td>
+                </tr>
 
-        <tr>
-            <td><label th:text="DescriptionRo" /></td>
-            <td><input type="text" th:field="*{descriptionRO}" /></td>
-        </tr>
+                <tr>
+                    <td><label th:text="DescriptionRo"/></td>
+                    <td><input id="descriptionRo" type="text" th:field="*{descriptionRO}"/></td>
+                </tr>
 
-        <tr>
-            <td><label th:text="start" /></td>
-            <td><input type="number" th:field="*{start}" /></td>
-        </tr>
+                <tr>
+                    <td><label th:text="start"/></td>
+                    <td><input type="number" th:field="*{start}"/></td>
+                </tr>
 
-        <tr>
-            <td><label th:text="stop" /></td>
-            <td><input type="number" th:field="*{stop}" /></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
-</form>
-
+                <tr>
+                    <td><label th:text="stop"/></td>
+                    <td><input type="number" th:field="*{stop}"/></td>
+                </tr>
+                <tr>
+                    <td><input class="btn btn-default" type="submit" value="Submit"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer">...</div>
+<script>
+    var descriptionEn = new Quill('#descriptionEn',{
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline']
+            ]
+        },
+        placeholder: 'Compose an epic...',
+        theme: 'snow'  // or 'bubble'
+    });
+</script>
 </body>
 </html>
